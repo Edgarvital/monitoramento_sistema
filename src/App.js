@@ -3,28 +3,22 @@ import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd";
 import uuid from "uuid/v4";
 
 const itemsFromBackend = [
-  { id: uuid(), content: "First task" },
-  { id: uuid(), content: "Second task" },
-  { id: uuid(), content: "Third task" },
-  { id: uuid(), content: "Fourth task" },
-  { id: uuid(), content: "Fifth task" }
+  {
+    id: uuid(), content: `https://www.pngfind.com/pngs/m/596-5961042_computador-computador-png-transparent-png.png`
+  },
+  // { id: uuid(), content: "Second task" },
+  // { id: uuid(), content: "Third task" },
+  // { id: uuid(), content: "Fourth task" },
+  // { id: uuid(), content: "Fifth task" }
 ];
 
 const columnsFromBackend = {
   [uuid()]: {
-    name: "Requested",
-    items: []
-  },
-  [uuid()]: {
-    name: "To do",
+    name: "Componentes",
     items: itemsFromBackend
   },
   [uuid()]: {
-    name: "In Progress",
-    items: []
-  },
-  [uuid()]: {
-    name: "Done",
+    name: "Monitoramento",
     items: []
   }
 };
@@ -69,7 +63,7 @@ const onDragEnd = (result, columns, setColumns) => {
 function App() {
   const [columns, setColumns] = useState(columnsFromBackend);
   return (
-    <div style={{ display: "flex", justifyContent: "center", height: "100%" }}>
+    <div style={{ display: "flex", justifyContent: "flex-end", height: "100%" }}>
       <DragDropContext
         onDragEnd={(result) => onDragEnd(result, columns, setColumns)}
       >
@@ -77,6 +71,7 @@ function App() {
           return (
             <div
               style={{
+
                 display: "flex",
                 flexDirection: "column",
                 alignItems: "center"
@@ -115,17 +110,14 @@ function App() {
                                     {...provided.dragHandleProps}
                                     style={{
                                       userSelect: "none",
-                                      padding: 16,
-                                      margin: "0 0 8px 0",
+                                      margin: "0 0 0px 0",
                                       minHeight: "50px",
-                                      backgroundColor: snapshot.isDragging
-                                        ? "#263B4A"
-                                        : "#456C86",
                                       color: "white",
                                       ...provided.draggableProps.style
                                     }}
                                   >
-                                    {item.content}
+                                    <img width={'100%'} height={'100%'} src={item.content} />
+                                    {/* {item.content} */}
                                   </div>
                                 );
                               }}
